@@ -3,6 +3,7 @@ require('styles/App.css');
 
 import React from 'react';
 import logo from '../images/train.jpg';
+var http = require('http');
 
 class AppComponent extends React.Component {
 
@@ -25,11 +26,14 @@ class AppComponent extends React.Component {
 
 
   handleSubmit = () => {
-    alert('Route from: ' + this.state.from + ' to: ' + this.state.to);
-    const item = {};
-    item.from = this.state.from;
-    item.to = this.state.to;
-    //event.preventDefault();
+
+    http.get('http://localhost:8080/test?fromCity='+this.state.from+'&toCity='+this.state.to+'&date='+this.state.date,
+      function(resp) {
+        resp.on('data', function(data) {
+          alert(data);
+        });
+      }
+    );
   }
 
   render() {
@@ -45,7 +49,7 @@ class AppComponent extends React.Component {
 				    	<option value="Chojnice">Chojnice</option>
 				    	<option value="Gdansk">Gdansk</option>
 						<option value="Gdynia">Gdynia</option>
-					</select> 
+					</select>
 		      	<br/>
 			  	<div>To:<br/></div>
 				  <select name="to" value={this.state.to} onChange={this.handleChange}>
@@ -57,7 +61,7 @@ class AppComponent extends React.Component {
 		      <br/>
 			  <div>Time:<br/></div>
 			  <input type="text" name="time" />
-		  	  <input className="button" type="submit" value="Submit" />
+		  	  <input className="button" value="Submit" type="button" onClick={this.handleSubmit}/>
 			</div>
 		  </form>
       </div>
