@@ -31,3 +31,5 @@ bower_components/
 # IDE/Editor data
 .idea
 *.iml
+
+search-engine-backend/target/

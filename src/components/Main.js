@@ -46,7 +46,7 @@ class AppComponent extends React.Component {
 				<div>From:<br/></div>
 		      		<select name="from" value={this.state.from} onChange={this.handleChange}>
 				    	<option value="Slupsk">Slupsk</option>
-				    	<option value="Chojnice">Chojnice</option>
+				    	<option value="Wroclaw">Wroclaw</option>
 				    	<option value="Gdansk">Gdansk</option>
 						<option value="Gdynia">Gdynia</option>
 					</select>
